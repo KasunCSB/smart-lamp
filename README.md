@@ -52,7 +52,6 @@ python lamp_control.py 192.168.1.100 status # Check status
 python lamp_control.py                      # Interactive menu
 ```
 
-## 🔧 TroubleshootingESP8266 with web interface and timer functionality.
 
 ## 🌟 Features
 
@@ -143,6 +142,7 @@ Open web browser and go to the IP address from step 4.
 ## 📄 License
 
 MIT License - Free to use and modify
+
 
 
 
