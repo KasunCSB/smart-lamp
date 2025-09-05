@@ -3,7 +3,7 @@
 WiFi-enabled smart lamp controller
 
 <div align="center">
-  <img src="screenshot.png" alt="Smart Lamp Screenshot" width="400" />
+  <img src="screenshot.png" alt="Smart Lamp Screenshot" width="200" />
 </div>
 
 **Arduino Code:**
@@ -146,6 +146,7 @@ Open web browser and go to the IP address from step 4.
 ## 📄 License
 
 MIT License - Free to use and modify
+
 
 
 
