@@ -1,7 +1,6 @@
 # Smart Lamp Controller
 
-WiFi-enabled smart lamp controll### 4. Find IP Address
-- Open Tools → Serial Monitor (9600 baud## 📁 Files
+WiFi-enabled smart lamp controller
 
 **Arduino Code:**
 - `mcu_smartlmp.ino` - **Main code (recommended)**
@@ -165,3 +164,4 @@ Open web browser and go to the IP address from step 4.
 ## 📄 License
 
 MIT License - Free to use and modify
+
