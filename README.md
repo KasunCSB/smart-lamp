@@ -23,10 +23,6 @@ WiFi-enabled smart lamp controller
 - Faster performance
 - Memory optimized
 - For advanced users
-- Note the IP address shown
-
-### 5. Access Interface
-Open web browser and go to the IP address from step 4.
 
 ## 💻 Control Scripts
 
@@ -164,5 +160,6 @@ Open web browser and go to the IP address from step 4.
 ## 📄 License
 
 MIT License - Free to use and modify
+
 
 
