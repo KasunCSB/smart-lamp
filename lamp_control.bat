@@ -1,11 +1,15 @@
 @echo off
 REM Smart Lamp Controller - Windows Batch Script
-REM Usage: lamp_control.bat [IP_ADDRESS] [COMMAND] [TIMER_MINUTES]
+REM Hardcoded for IP: 192.168.1.100
+REM Usage: lamp_control.bat [COMMAND] [TIMER_MINUTES]
 REM Commands: on, off, status, timer
-REM Example: lamp_control.bat 192.168.1.100 on
-REM Example: lamp_control.bat 192.168.1.100 timer 30
+REM Example: lamp_control.bat on
+REM Example: lamp_control.bat timer 30
 
 setlocal enabledelayedexpansion
+
+REM Hardcoded IP address for easier use
+set LAMP_IP=192.168.1.100
 
 REM Check if curl is available
 curl --version >nul 2>&1
@@ -16,12 +20,10 @@ if errorlevel 1 (
 )
 
 REM Parse arguments
-set LAMP_IP=%1
-set COMMAND=%2
-set TIMER_MINUTES=%3
+set COMMAND=%1
+set TIMER_MINUTES=%2
 
 REM If no arguments, show menu
-if "%LAMP_IP%"=="" goto :show_menu
 if "%COMMAND%"=="" goto :show_menu
 
 REM Execute command
@@ -40,16 +42,7 @@ echo ============================================
 echo        Smart Lamp Controller
 echo ============================================
 echo.
-if "%LAMP_IP%"=="" (
-    set /p LAMP_IP=Enter lamp IP address: 
-    if "!LAMP_IP!"=="" (
-        echo IP address cannot be empty!
-        pause
-        goto :show_menu
-    )
-)
-
-echo Current lamp IP: %LAMP_IP%
+echo Lamp IP: %LAMP_IP%
 echo.
 echo 1. Turn lamp ON
 echo 2. Turn lamp OFF  
@@ -59,10 +52,9 @@ echo 5. Quick timer - 5 minutes
 echo 6. Quick timer - 30 minutes
 echo 7. Quick timer - 1 hour
 echo 8. Cancel timer
-echo 9. Change IP address
 echo 0. Exit
 echo.
-set /p choice=Select option (0-9): 
+set /p choice=Select option (0-8): 
 
 if "%choice%"=="1" goto :turn_on
 if "%choice%"=="2" goto :turn_off
@@ -72,7 +64,6 @@ if "%choice%"=="5" set TIMER_MINUTES=5 && goto :set_timer
 if "%choice%"=="6" set TIMER_MINUTES=30 && goto :set_timer
 if "%choice%"=="7" set TIMER_MINUTES=60 && goto :set_timer
 if "%choice%"=="8" set TIMER_MINUTES=0 && goto :set_timer
-if "%choice%"=="9" set LAMP_IP= && goto :show_menu
 if "%choice%"=="0" exit /b 0
 
 echo Invalid choice!
@@ -109,22 +100,18 @@ goto :continue
 
 :get_status
 echo Getting lamp status...
-curl -s -f "http://%LAMP_IP%/status" > temp_status.json
-if errorlevel 1 (
+for /f "delims=" %%i in ('curl -s -f "http://%LAMP_IP%/status" 2^>nul') do set json_response=%%i
+if "%json_response%"=="" (
     echo Error: Could not connect to lamp at %LAMP_IP%
     echo Make sure the IP address is correct and lamp is online.
     goto :continue
 )
 
-REM Parse JSON response (basic parsing)
-for /f "tokens=*" %%i in (temp_status.json) do set json_response=%%i
-del temp_status.json >nul 2>&1
-
 echo.
 echo Status: %json_response%
 echo.
 REM Simple status display
-echo %json_response% | find "true" >nul
+echo %json_response% | findstr "true" >nul
 if not errorlevel 1 (
     echo Lamp is currently ON
 ) else (
