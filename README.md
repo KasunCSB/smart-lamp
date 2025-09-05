@@ -133,33 +133,17 @@ Open web browser and go to the IP address from step 4.
 - Verify wiring connections
 - Check relay power LED
 - Test with multimeter
+- Use appropriate voltages - 3V VCC 3.3V VIN signal or 5V VCC 5V VIN (via logic level converter)
 
 **Can't access web page:**
 - Check IP address in Serial Monitor
 - Ensure device on same WiFi network
 - Try different browser
 
-## � Files
-
-- `mcu_smartlmp.ino` - **Main code (recommended)**
-- `mcu_smartlmp_optimized.ino` - Performance optimized version
-
-## 🔄 Code Versions
-
-**mcu_smartlmp.ino (Recommended)**
-- Easy to understand
-- Standard Arduino functions  
-- Perfect for beginners
-- All features included
-
-**mcu_smartlmp_optimized.ino**
-- Faster performance
-- Memory optimized
-- Advanced users only
-
 ## 📄 License
 
 MIT License - Free to use and modify
+
 
 
 
