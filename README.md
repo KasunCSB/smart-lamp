@@ -2,6 +2,10 @@
 
 WiFi-enabled smart lamp controller
 
+<div align="center">
+  <img src="screenshot.png" alt="Smart Lamp Screenshot" width="400" />
+</div>
+
 **Arduino Code:**
 - `mcu_smartlmp.ino` - **Main code (recommended)**
 - `mcu_smartlmp_optimized.ino` - Performance optimized version  
